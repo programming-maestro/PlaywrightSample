@@ -24,9 +24,12 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  //reporter: 'html',
+  reporter: [['html'], ['list'], ['blob']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    /* Overwrighting Default Test ID, viz. dataa-testid */
+    testIdAttribute: 'data-test',
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: 'http://practicesoftwaretesting.com',
 
@@ -34,8 +37,10 @@ export default defineConfig({
     trace: 'on',
     actionTimeout: 0,
     ignoreHTTPSErrors: true,
-    video: 'retain-on-failure',
-    screenshot: 'only-on-failure',
+    //video: 'retain-on-failure',
+    //screenshot: 'only-on-failure',
+    video: 'on',
+    screenshot: 'on',
     headless: true,
 
 
