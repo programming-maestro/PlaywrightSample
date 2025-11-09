@@ -29,12 +29,27 @@ test('Test 3', async ({ counterFixture }) => {
   console.log(`Test 3 Counter: ${counterFixture}`);
 });
 
-//note: run it using following command
+// 🧪 Note: Run this test using the following command:
 // npx playwright test "tests/design-patterns/fixtures/fixtures-scope-and-isolation.spec.ts" --workers=1
 
+/*
+📘 Interpretation:
 
-/* Interpretation:
-'test' Scope, will call the fixture before every test unlike 'worker' scope which called it for the number of worker instantiated and run these test.
+- The `'test'` scope calls the fixture **before every test**, unlike the `'worker'` scope,
+  which calls it only once per worker process.
 
-so if 1 worker is user, fixture is called once, if 2 workers are running the test, than fixture is called twice, and so on.
-Note: if you have 2 test to be executed once but requested 100 workers to execute, fixture will only call twice. */
+- If 1 worker is used, the fixture runs once.
+  If 2 workers are running, the fixture runs twice, and so on.
+
+🧠 Example:
+If you have 2 tests to execute but request 100 workers, the fixture will only be called twice —
+once per worker, not once per test.
+
+✅ The `test` scope ensures each test runs in its **own isolated environment**,
+   avoiding shared state or side effects between tests.
+*/
+
+/*
+💡 Fixtures provide **reusability** and **encapsulation**, keeping your code clean,
+maintainable, and focused on logic rather than setup.
+*/
